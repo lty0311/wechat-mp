@@ -73,12 +73,12 @@ export const asyncRouterMap = [
  * @type { *[] }
  */
 export const constantRouterMap = [
-  {
-    path: '/install',
-    name: 'install',
-    component: () => import(/* webpackChunkName: "install" */ '@/views/install/InstallWizard'),
-    hidden: true
-  },
+  // {
+  //   path: '/install',
+  //   name: 'install',
+  //   component: () => import(/* webpackChunkName: "install" */ '@/views/install/InstallWizard'),
+  //   hidden: true
+  // },
   {
     path: '/user',
     component: UserLayout,

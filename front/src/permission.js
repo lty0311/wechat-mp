@@ -15,7 +15,7 @@ const allowList = ['login', 'register', 'registerResult', 'wx-authorizer', 'wx-c
 const loginRoutePath = '/user/login'
 const defaultRoutePath = '/dashboard/workplace'
 const installRoutePath = '/install'
-let installStatusChecked = false
+let installStatusChecked = true
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start() // start progress bar
@@ -61,7 +61,8 @@ router.beforeEach(async (to, from, next) => {
     }
   } else {
     // 使用缓存的安装状态
-    const cachedStatus = localStorage.getItem('system_installed')
+    // const cachedStatus = localStorage.getItem('system_installed')
+    const cachedStatus = 'true'
     if (cachedStatus === 'false' && to.path !== installRoutePath) {
       next({ path: installRoutePath })
       NProgress.done()

@@ -6,7 +6,7 @@
       <!--      <a href="https://www.github.com/sendya/" target="_blank">@Sendya</a>-->
     </template>
     <template v-slot:copyright>
-      <a href="https://github.com/chunbo007/wechat-mp" target="_blank">wechat-mp</a>
+      <a href="https://cool-emoji.com" target="_blank">cool-emoji</a>
     </template>
   </global-footer>
 </template>
