@@ -206,7 +206,7 @@ export default {
     currentUser () {
       return {
         name: 'Serati Ma',
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
+        avatar: '~@/assets/BiazfanxmamNRoxxVxka.png'
       }
     },
     userInfo () {

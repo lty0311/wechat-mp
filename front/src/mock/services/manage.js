@@ -99,7 +99,7 @@ const activity = () => {
     id: 1,
     user: {
       nickname: '@name',
-      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+      avatar: '~@/assets/BiazfanxmamNRoxxVxka.png'
     },
     project: {
       name: '白鹭酱油开发组',
@@ -164,7 +164,7 @@ const activity = () => {
     id: 1,
     user: {
       nickname: '曲丽丽',
-      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+      avatar: '~@/assets/BiazfanxmamNRoxxVxka.png'
     },
     project: {
       name: '高逼格设计天团',
@@ -180,7 +180,7 @@ const teams = () => {
   return builder([{
     id: 1,
     name: '科学搬砖组',
-    avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+    avatar: '~@/assets/BiazfanxmamNRoxxVxka.png'
   },
   {
     id: 2,

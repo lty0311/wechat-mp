@@ -40,6 +40,12 @@
               <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
             </a-input-password>
           </a-form-item>
+
+          <a-form-item>
+            <!-- Turnstile 验证组件 -->
+            <div id="turnstile-container"></div>
+          </a-form-item>
+
         </a-tab-pane>
         <!--        <a-tab-pane key="tab2" :tab="$t('user.login.tab-login-mobile')">-->
         <!--          <a-form-item>-->
@@ -140,10 +146,17 @@ export default {
         // login type: 0 email, 1 username, 2 telephone
         loginType: 0,
         smsSendBtn: false
-      }
+      },
+
+      turnstile_sitekey: '0x4AAAAAADFmiRR9ABbfRevC', // Turnstile Turnstile站点密钥
+      turnstileToken: '', // Turnstile 验证令牌
+      turnstileWidgetId: null,
     }
   },
   created () {
+    if(process.env.NODE_ENV === 'development'){
+      this.turnstileToken = 'sdfsdfsf';
+    }
     // get2step({ })
     //   .then(res => {
     //     this.requiredTwoStepCaptcha = res.result.stepCode
@@ -153,8 +166,46 @@ export default {
     //   })
     // this.requiredTwoStepCaptcha = true
   },
+  mounted() {
+    // 重点：等 DOM 完全渲染完毕再执行
+    this.$nextTick(() => {
+      this.initTurnstile()
+    })
+  },
   methods: {
     ...mapActions(['Login', 'Logout']),
+
+    // 初始化 Cloudflare Turnstile
+    initTurnstile() {
+      if (window.turnstile) {
+        this.renderTurnstile()
+        return
+      }
+      // #ifdef H5
+      const script = document.createElement('script')
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+      script.async = true
+      script.defer = true
+
+      // 脚本加载完成后渲染验证组件
+      script.onload = () => {
+        this.renderTurnstile()
+      }
+      document.body.appendChild(script)
+      // #endif
+    },
+    // 抽离渲染逻辑
+    renderTurnstile() {
+      // #ifdef H5
+      this.turnstileWidgetId = window.turnstile.render('#turnstile-container', {
+        sitekey: this.turnstile_sitekey,
+        callback: (token) => {
+          this.turnstileToken = token
+        },
+      })
+      // #endif
+    },
+
     // handler
     handleUsernameOrEmail (rule, value, callback) {
       const { state } = this
@@ -172,6 +223,7 @@ export default {
     },
     handleSubmit (e) {
       e.preventDefault()
+
       const {
         form: { validateFields },
         state,
@@ -185,10 +237,20 @@ export default {
 
       validateFields(validateFieldsKey, { force: true }, (err, values) => {
         if (!err) {
+          if (!this.turnstileToken) {
+            this.$notification['error']({
+              message: '错误',
+              description: '请完成人机验证',
+              duration: 4
+            })
+            state.loginBtn = false
+            return;
+          }
           const loginParams = { ...values }
           delete loginParams.username
           loginParams[!state.loginType ? 'email' : 'username'] = values.username
           loginParams.password = md5(values.password)
+          loginParams['captchaVerification'] = this.turnstileToken
           Login(loginParams)
             .then((res) => this.loginSuccess(res))
             .catch(err => this.requestFailed(err))

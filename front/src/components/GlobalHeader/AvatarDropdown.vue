@@ -3,7 +3,7 @@
     <a-dropdown placement="bottomRight">
       <span class="ant-pro-account-avatar">
         <a-avatar class="antd-pro-global-header-index-avatar" size="small"
-                  src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"/>
+                  :src="avatar"/>
         <span>{{ currentUser.name }}</span>
       </span>
       <template v-slot:overlay>
@@ -70,6 +70,7 @@ export default {
   name: 'AvatarDropdown',
   data() {
     return {
+      avatar: require('@/assets/BiazfanxmamNRoxxVxka.png'),
       modalLoading: false,
       modalVisible: false,
       passwordVisible: false,
