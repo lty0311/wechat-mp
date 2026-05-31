@@ -256,6 +256,8 @@ export default {
             .catch(err => this.requestFailed(err))
             .finally(() => {
               state.loginBtn = false
+              this.turnstileToken = '';
+              window.turnstile&&window.turnstile.reset(this.turnstileWidgetId);
             })
         } else {
           setTimeout(() => {
