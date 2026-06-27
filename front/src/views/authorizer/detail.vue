@@ -7,6 +7,7 @@
         </a-tab-pane>
         <a-tab-pane key="2" force-render tab="信息配置">
           <setting/>
+          <setting2/>
         </a-tab-pane>
         <a-tab-pane key="3" tab="体验者">
           <tests/>
@@ -22,6 +23,7 @@
 <script>
 import version from '@/views/authorizer/modules/version'
 import setting from '@/views/authorizer/modules/setting'
+import setting2 from '@/views/authorizer/modules/setting2'
 import tests from '@/views/authorizer/modules/tests'
 import Privacy from "@/views/authorizer/modules/privacy.vue";
 
@@ -31,6 +33,7 @@ export default {
     Privacy,
     version,
     setting,
+    setting2,
     tests
   },
   data() {

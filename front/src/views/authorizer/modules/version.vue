@@ -25,7 +25,7 @@
             </a-descriptions>
           </a-col>
           <a-col v-if="release_info['release_qrcode']" span="16">
-            <img :src="'data:image/jpge;base64,' + release_info['release_qrcode']" alt="" width="150">
+            <img :src="release_info['release_qrcode']" alt="" width="150">
           </a-col>
         </a-row>
       </template>
@@ -88,7 +88,7 @@
           </a-descriptions>
         </a-col>
         <a-col v-if="exp_info['exp_qrcode']" span="16">
-          <img :src="'data:image/jpge;base64,' + exp_info['exp_qrcode']" alt="" width="150">
+          <img :src="exp_info['exp_qrcode']" alt="" width="150">
         </a-col>
       </template>
       <template v-else>

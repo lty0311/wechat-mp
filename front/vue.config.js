@@ -124,20 +124,21 @@ const vueConfig = {
   devServer: {
     // development server port 8000
     port: 8001,
+    allowedHosts: ['wechatmp.geekbow.com'],
     // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
     proxy: {
       '/admin': {
-        target: 'http://localhost:8789',
+        target: 'https://wechatmp.cool-emoji.com',
         ws: false,
         changeOrigin: true
       },
       '/wechat': {
-        target: 'http://localhost:8789',
+        target: 'https://wechatmp.cool-emoji.com',
         ws: false,
         changeOrigin: true
       },
       '/openapi': {
-        target: 'http://localhost:8789',
+        target: 'https://wechatmp.cool-emoji.com',
         ws: false,
         changeOrigin: true
       }

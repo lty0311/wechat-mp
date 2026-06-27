@@ -10,6 +10,7 @@ const api = {
   release: '/miniprogram/release',
   RevertCodeRelease: '/miniprogram/revertCodeRelease',
   SetDomain: '/miniprogram/setDomain',
+  SetDomainBiz: '/miniprogram/setWebviewDomain',
   getPcAuthorizerUrl: '/miniprogram/getPcAuthorizerUrl',
   getTests: '/miniprogram/getTests',
   bindTester: '/miniprogram/bindTester',
@@ -85,6 +86,14 @@ export function revertCodeRelease(parameter) {
 export function setDomain(parameter) {
   return request({
     url: api.SetDomain,
+    method: 'post',
+    data: parameter
+  })
+}
+
+export function setDomainBiz(parameter) {
+  return request({
+    url: api.SetDomainBiz,
     method: 'post',
     data: parameter
   })
