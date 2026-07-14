@@ -181,6 +181,12 @@ const columns = [
     width: 100
   },
   {
+    title: '账号状态',
+    dataIndex: 'account_status',
+    width: 200,
+    scopedSlots: {customRender: 'account_status'}
+  },
+  {
     title: '授权时间',
     dataIndex: 'auth_time',
     width: 200
@@ -190,12 +196,6 @@ const columns = [
     title: '主体信息',
     dataIndex: 'principal_name',
     width: 250
-  },
-  {
-    title: '账号状态',
-    dataIndex: 'account_status',
-    width: 200,
-    scopedSlots: {customRender: 'account_status'}
   },
   {
     title: '注册类型',
